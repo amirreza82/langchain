@@ -5,7 +5,7 @@ from langchain import OpenAI
 import os
 
 # Set your OpenAI API key as an environment variable
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = ""
 
 # Initialize the LLM wrapper using OpenAI's GPT
 llm = OpenAI(temperature=0.3)  # Adjust temperature as needed (0.3 for balanced output)
