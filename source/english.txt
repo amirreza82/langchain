@@ -1,0 +1,261 @@
+Certainly! Here’s the translated text:
+
+---
+
+I'm confident that this issue has nothing to do with the current matter. Let me give you the exact time. 
+The issue is with Lak Lak; from there, you can determine the exact timing, right? 
+Yes, but it was much more serious, and the kids wrote it in the report. 
+Now, if one of your team members who is available can attend the meeting, that would be good. 
+Okay, I’ll see who it is. 
+Whoever it is should come. 
+I’ll explain to the SSHS team that they only need to answer a short question, and if they can provide us with that, it will be very helpful. 
+The rest don't need to be present. We can move forward with the text at the beginning or end of the meeting. 
+Otherwise, there’s no concern. 
+Ali, I’m here too. 
+No, Mehdi is not here again. 
+If you don’t have a meeting, join us. 
+Let’s start. Ali, I just want to ask you a question at the beginning that I think many of our team members have. For instance, until this call yesterday, which was when we understood this issue towards the end, could you explain the mechanism and function of the Style file? Specifically, the file you loaded onto the CDN—about the traffic tile—if I’m correct, could you clarify where it started and where it went? Whether we call it an incident or an issue. 
+Please provide a detailed explanation so we can all be on the same page and hopefully address the rest of the issues. 
+I wanted to clarify the issue with Arash before the meeting. We worked on the tile assignment, and Arash sent it to the group. You can see it a bit higher, but these questions are indeed prerequisites for understanding the problem. My suggestion is that Arash himself answers these questions briefly in five minutes—what Still is, how the Tile works, and so on. 
+Then, I will tell the story from my perspective, and there are still many ambiguous parts that we can figure out together. 
+Okay, I’ll speed up now. If more details are needed somewhere, let me know, and I’ll provide more information. Generally, what happens is that based on the data sent by GPS devices to the traffic team, they create a geographical file with streets and colors. These colors indicate how heavy the traffic is on each street. This file is handed over to the core team, and every fifteen minutes, we reset it so the traffic data updates on the map. Now, the Style file you have essentially provides a route to the traffic tile server. 
+The traffic tile works by serving a traffic tile and then overlaying it on the main tile. The traffic tile service automatically synchronizes every fifteen minutes. The data provided by the traffic team and the JSON file you see contain the addresses of the two servers and details on how to display them. It shows where the traffic data is fetched from and how to display it, including color coding and related details. 
+This is the overview. I’m not sure if I answered the question properly. 
+Let me provide a general explanation of why such a file exists. See, we have other services for Tile map display using various standards and occasionally static boxes. 
+Answer the question. 
+The Style file, I sent the link here; you can open it. It explains according to the standards and what is described in the box. 
+It includes all the map display conditions, including layers, center of the map, default zoom, and more. For example, traffic layers are specified, including where to fetch traffic data from. 
+Yesterday, I was discussing with Mr. Agha, and we rarely make changes to this file. There are only two cases where changes occur: one is if we want to change the map design, such as changing colors or showing more or fewer layers. The other case is if there is a version update. Outside of these two scenarios, it’s very unlikely that we make changes to the Style file. 
+This is the situation with the Style file and Tile service. If you have any further questions, please ask. Otherwise, let’s move on to the assignment. 
+I had a question about how it was generated—is it manual or not? Does it have a specific editor or is it created together? 
+Yes, it has an editor, Max Studio, for editing. But if it's just about editing, we do it directly in the repo. 
+For design changes, we use Base Studio. We usually have a validator as well. 
+I didn’t understand the validator part. Is it done by Max Studio? 
+Yes, it is. 
+Let’s move on. 
+If you have any questions about Tile, please go ahead. 
+Ali, hello, I have a question. What do you mean by the standard? Is it a global standard or a standard that we have set ourselves? 
+No, we are following the provided standard. If you check the file, you’ll see it matches exactly what we have described. It outlines specific conditions and layers. 
+If we change the standard and it doesn’t align with the specs, then— 
+I think so. If we make changes, it might affect compatibility. 
+Yes, we cannot change it. Our clients, whether on Android or iOS, use these standards. Therefore, we must adhere to these standards. 
+Changes that deviate from the standard are not allowed. 
+Yes, if a character is missing or a key is changed, it might break things. 
+Okay, thanks. 
+Sure, here's the translation of the provided text into English, maintaining the original meaning, tone, and nuances:
+
+---
+
+Yasser
+Please go ahead.
+
+Hello, hello, I have a question. Can you explain the difference between the Android and PWM platforms? What is the difference between the two? We have a cache on one side and not on the other. Also, if this piece is produced... Madi can explain this as well since I wasn’t aware of it at all. I found out only yesterday. You see, there are different clients on Android and iOS, and we have other clients as well, outside of these.
+
+To load the map on Android, you need to provide a Still file as input. I think this is the only input it takes. There’s no need for anything else, just this file. 
+
+On our side, we have an internal styler in our map team, and we provide this to our clients, telling them to use this styler service.
+
+Now, an issue arose: at some point, we were updating the version of this styler while we were dealing with tiles. We kept adjusting its version, sometimes increasing it, but it was still within standard limits. However, suddenly the version would go up and conflict with some clients who had used it in certain places. 
+
+Madi will correct me if I’m wrong, but our team realized that instead of reading the files from our service, they should handle them themselves to ensure they don’t change and that they can provide a stable service.
+
+Madi, if I’m mistaken, feel free to correct me.
+
+Oh, no, this wasn’t related to that. If you recall, some iOS users had issues a while ago, and we made changes there. If you remember, our guess was that Safari was having issues with loading data. We thought it might be a problem with Tile not being able to resolve the data. Naturally, it wasn’t getting the Still file, so no map appeared. You were there, and Mohammad Joolai was there too. We decided to address this and test it to ensure the issue was resolved.
+
+Oh, I remember now. If it couldn’t load, then that was correct.
+
+Yes, yes, that was the timing, but the outcome was the same. It didn’t affect our services.
+
+We need to be careful every time we update; we must inform you both sides to ensure that the issue doesn't recur. Yesterday’s situation highlighted this.
+
+Yasser, the issue you mentioned is that instead of using the file you provide, they copied it and managed it themselves.
+
+Got it, thanks. I think we’ve discussed the prerequisites. Let's dive into the timing. I’ll explain the situation from my perspective. As we said, there are some aspects I still don’t understand why they happened. Let's continue with what we know.
+
+Now, the timeline and Ariano have written something; you might want to take a look at that.
+
+What happened was we had a deployment in the service, which is what Ariano mentioned: every street and every segment should be a certain color based on traffic density, ranging from green to yellow, red, and orange. The update had some issues where the geometry of these lines was messed up. For example, a semicircle would appear instead of a straight line, or there would be protrusions from the streets. 
+
+The team discussed this issue and realized that rolling back the change was time-consuming and not quick to execute. Due to certain reasons, which we can discuss later, they decided to turn off the traffic layer temporarily. Once the issue was resolved, they planned to turn it back on. Earlier, our product team had reviewed it and found that it didn’t have much business impact. There had been discussions about whether to keep or remove the traffic feature, and it seemed like only passengers saw it, not drivers. So, if a driver took longer to pick up a passenger, the passenger would see the traffic light and might wait longer before canceling.
+
+This is why the traffic layer was present in the application. The summary was that since the traffic layer was displaying incorrect geometry, the team decided to turn it off temporarily.
+
+Given that this was an unforeseen issue, we suddenly found ourselves figuring out how to turn it off. We hadn’t anticipated having a switch for it. We guessed that there might be a fallback to handle traffic tiles and started testing. The team decided to put the traffic layer on a non-existent address, assuming it would be ignored. But this led to a bigger issue where the entire box began to malfunction.
+
+The core of the issue was that our Android classes had not been properly set up by the Max team. This caused problems across the entire system, and the traffic tile handling was affected.
+
+Our observation, based on the effects we saw on other services, was that about 40-45% of users were affected. It seemed like this issue depended on a specific version of the box. Some versions of the box were properly configured, while others were not. This led to errors in location-based services.
+
+Android experts can provide more detailed explanations, and I’ll address questions about this. Qasem also has questions we can discuss.
+
+Ashkan raised his hand. He has a question.
+
+Go ahead.
+
+Hello, friends. Good afternoon. I have a few questions. The reason this problem wasn’t apparent at first is that the green errors were okay initially. But after the color change, this issue appeared. Is that correct, Ali?
+
+No, I think after the change, we didn’t actually intend to change the color.
+
+Open the JSON file I sent. 
+
+In one part, it refers to the traffic address. If you search for traffic, you’ll find where it is mentioned.
+
+Now, I’m searching for it.
+
+No, I sent the screen shots.
+
+It refers to the traffic layer address. 
+
+The idea the team had was to convert this to an invalid address, hoping the traffic tile wouldn’t be displayed. However, this didn’t work as expected. The entire box began malfunctioning because the system was not correctly processing the traffic tile.
+
+Yes, that’s correct. The issue was not apparent on other parts. The issue started right when we added the traffic layer.
+
+Let me ask a question.
+
+The photo you’re seeing now is not recent; it was from when the issue first occurred. The team detected and reported it about half an hour after it started.
+
+Do you want to ask the questions first, Ali, and then explain?
+
+Yes.
+
+Qasem, Madi, and others, if you have questions, please go ahead.
+
+Okay.
+
+Let me explain briefly about the JSON file. It details how the map data is structured, including layers and zoom levels. One important aspect is how traffic data is handled. If we change the JSON, it usually requires rebuilding the entire project, which is a lengthy process. To avoid this, we decided to only modify the configuration without a full rebuild.
+
+Yes, that’s right. We identified the specific issue with the JSON file that was causing problems with traffic layers and reported it. However, we only modified the JSON configuration because a full rebuild was not feasible at the time.
+
+Regarding your suggestion, Ali, having a separate style for traffic and non-traffic scenarios might be useful for easier switching in the future.
+
+Yes, it seems like a good idea. We should consider it.
+
+Let's move forward with the discussion.
+
+Yes, thank you. If there are any more questions, please let me know.
+
+Alright, it looks like that’s all for now. We should keep the issues and fixes in mind as we continue.
+
+Here's a translated version of the content:
+
+---
+
+I just want to ask one question: if we want to wrap up the session in four hours, should I skip the story and just cover the issues, or should we keep going?
+
+Mohammadreza
+
+But I think we should take another half hour because we haven’t really discussed the main story yet. If we extend it by another half hour, until four and a half, I think we can wrap things up if everyone agrees.
+
+Okay. I'll try to be quicker. Now, let's go over the stats. So far, we’ve reached a point where the traffic on the Tile side changed and everything crashed—meaning the Lotion was no longer coming towards the services, which caused issues with various things. 
+
+What happened was, during a roughly one-hour game time, the issue was fixed around three thirty-five. The problem we had with Tile traffic was resolved, and our team reverted the config to the original one where the UAL was intact. 
+
+However, the problem was that we had several cache layers, which I think is a big issue. We need to consider whether we should make changes to these caches or adopt a more conservative approach to modifications related to these caches. What happened was that we had some caching issues with the CDN, both with Arvan and Soton. 
+
+Fortunately, Arvan is working well, and we’ve been using its API. We had issues with Soton before as well, not technical but with some content on the map. We couldn't push the map data with the API. I should also mention that we don’t flash the CDN because doing so would not only bring down our service but also crash our cloud routers. The load on Tile is very high, and even a brief bypass of the CDN would result in the routers going down. 
+
+Thus, whenever we need to push something, we do it conservatively, with only one or two files from the part that is causing the issue. In the pushes we've done, only the Still file was problematic. 
+
+The issue seemed to persist in both the first and second instances when we tried to reverse. The project did not work on the Soton side, so our guess is that it took some time to resolve. Even after deciding what to do, we still faced the issue. 
+
+I think Soton was resolved around ten or eleven at night. It might have been a bit earlier, around eight. So, we have a serious problem with Soton. 
+
+My suggestion is, considering that we have other issues with Soton on our production, and since the Soton side has been problematic, let's stop using Soton entirely until we address these issues. Then, we can reopen the cache as we only have the fallback.
+
+Currently, 94% of our load is on Arvan, and 6% is on the Tile service on Soton. If you have any comments, let me know; otherwise, I’ll continue.
+
+Aryan and Ashkan
+
+Ashkan, I think your hand has been raised for a while. 
+
+Or maybe it was just raised. I don’t know. 
+
+No, I had a question. One of the questions I had, which Ali answered in his explanations, was that during the call yesterday, you told me that at the beginning of the session, you said it would take about half an hour to resolve, but it ended up taking two hours. It turned out that the issue was with Soton. Another question I had was whether there was an error. Did we not get any error indicating that something was not deleted, or something like that? For example, did it not indicate that it was not deleted or took too long to do so? Ali, can you explain?
+
+Aryan knows. Aryan can explain.
+
+No, there was no specific error. We’ve had similar issues with Arvan before. It seems that they’re doing something on the backend, and it may say that it’s deleted, but it might take thirty to forty minutes to complete. Let me explain. What Ali mentioned, these various caching layers, we had issues with the route we created. I still have around three hundred cache requests on that file we tried to delete yesterday. It’s been about twenty hours, and the cache hasn’t cleared yet. We don’t know if this is due to Soton or the intermediary layers. 
+
+I still have three hundred requests hitting the file we tried to delete yesterday. 
+
+Yes, let me explain. Our second major issue, which is quite scary for me, is that after confirming that we’ve cleared both Arvan and Soton caches, I woke up in the morning, opened the SPAM application, and saw that I couldn’t get any prices. Waiting didn’t help. I spent about five minutes trying different places to get prices but couldn’t. I guessed that it might be a caching issue. Not only do we need to clear the CDN cache, but the cache control issue is that if a file has an issue for any reason, there’s no way to clear it except by fully closing and reopening the application, which is quite scary. 
+
+We use cache control for API responses.
+
+Yes, exactly. The issue is that, as far as I understand, cache control does not handle the caching behavior you’re referring to. It might not be working correctly with the cache behavior you described. It’s good to investigate further.
+
+The story you mentioned about Android devices is that they have around eight to twelve gigabytes of RAM. When a device with such RAM keeps something in memory, even if you change or clear the cache, it might still be retained in memory. This could explain why some devices experience issues, and a simple restart or clearing might not resolve it immediately.
+
+What should we do? Ali, any suggestions? I think the only solution in this situation is to ask everyone to close and reopen their apps, which isn’t ideal. It would be great if we could find another solution.
+
+I think the best and practical solution is to change the route. Since we can easily make this change in Kang, it would be better to switch from Tile to Tile4. This would avoid issues with caching since it controls how each device handles caching. 
+
+Another possible solution is to change the URIs we’re using, as outdated versions may cause issues. For instance, if we change the URIs, it might help avoid some of the problems we’ve been experiencing. 
+
+I just want to mention that in many cases, users in Iran are used to restarting their apps when something isn’t working right, which could be a workaround for the caching issue.
+
+We’ve had this problem with caches for about a year and a half. We added cache control to Boston to handle this. The cache control is implemented for APIs we manage, but we have limited control over it. 
+
+One thing to note is that instead of keeping data in memory for two to three hours, it should ideally be kept for one to five minutes. This might not be critical, but it could be worth exploring.
+
+If there are any questions, I suggest we save them for the end since I feel we might not reach Ali’s comments. We should gather all questions at the end of the meeting because some people might need to leave for other commitments.
+
+Okay, let’s continue with the issues related to this. If anyone has questions, let’s address them at the end.
+
+Here’s the translation of the text into English:
+
+---
+
+If Ali, you have any points regarding this topic, I have a few points about this discussion. I just have a few things, Ali. Until when? Please go ahead, if you’re referring to my thoughts, I’m sorry, please go ahead.
+
+No, both of us can speak. I just wanted to say that it took a bit of time yesterday for us to even understand which client was facing the error in the service talk. Even initially, because the number of users encountering the issue was small, the percentage was low. I didn’t think it was related to Android at first, and I thought it might have happened elsewhere. Later, some changes were made, and I appreciate that they acted quickly, but this question arose for me, such as, the team knew about the success rates for clients, but we didn’t have such information regarding errors. Perhaps for many of our other points, we should consider which client is facing an error to identify the issue more quickly. 
+
+In terms of monitoring, previously when issues occurred, such as network-related ones, we used to send metrics, but the volume was so high that it consumed more battery and sent too much data to the server. I think this was about two years ago when we removed it all. So now, there’s no specific metric that is sent for every client. I mentioned these two issues as points to consider.
+
+Thank you. I just want to add to Qasem’s comments and your remarks that, initially, we realized the issue with the service type. But if you pay attention, at the same time, the red indicator is showing exactly this. At the same time, we had a deployment and a service on Mocha. Although the change was not related to this issue, it was only related to other parts, and this caused a small gap on our side until we realized the issue was not with the services but with Mocha. 
+
+Naturally, we had errors from Simorgh on Mocha and expected Simorgh to validate the data it was receiving on the other side. If it didn’t, it shouldn’t have sent the data to Mocha, causing Mocha to throw errors or the service to fail. Additionally, during this time, we didn’t have client data, and Mohammad worked hard to add this, which helped us realize that the problem was with our Android clients. 
+
+The point here is that things that come to my mind could help us, and we might need to work on them, such as with Simorgh. The team from Sharserv isn’t available. Honestly, we didn’t have a good approach for this issue with Simorgh, and I think Ali could have helped more with the service-related issues. Even at the beginning of the meeting, Qasem suggested that we should deploy through a different method, not via Git, to understand the situation better. 
+
+The Mocha issue also needs improvement, and Mohammad added this during the incident, which I think still needs more checking. This lack of proper setup contributed to a very long resolution time. The services that were involved in the incident need significant improvements, and Simorgh or other parts might need adjustments. 
+
+Mohammad, we are waiting for that. I think this is the case. 
+
+Yes, hello everyone, hope you’re doing well. The previous meeting finally ended, and I managed to get in touch. Regarding the issue we mentioned, we understood about ten or fifteen minutes after realizing the issue. It was clear that the issue was from the client side. We added Hooman and Ali Abdollahi to help us identify the problem on the client side. The issue was clear: it was neither with Simorgh nor Mocha but was coming from the client side. However, we couldn’t figure out why Android, which had its main release a month ago, was now facing problems. After some investigation, we concluded that it was related to the mapping part. 
+
+We needed a specific metric to understand the 400 requests coming from which client, which we added immediately. The overall situation was that we quickly identified where the issue was. It took time to pinpoint the client side, but we could address it faster in the future. I can add a point here: we had an issue with the service type, not with the service itself. There was a client-side issue with the service type that we managed to address. 
+
+In my opinion, this should be added to the load balancer logs. We need to know if the 400 rate is high on Android users or PWA users. It’s easy to diagnose with the site, whether based on Android or based on what’s being sent. We should have this in place to quickly identify which client is causing problems in the future. 
+
+I also had a question. We have metrics for the service on Grafana, but not for the ACD. I don’t see it; if it can be added to the ACD, it would be very helpful. The team members like Mohammad Reza can explain this better. 
+
+Mehdi, can you add this as a note point for Sing and Acing projects? If there’s anything else to add, we can discuss it later. 
+
+Qasem, please go ahead. 
+
+---
+
+If Ali has no more points, Hamed, do you? 
+
+No, just some ambiguities remain, which I think we can't advance further in this meeting. We should document them specially so different teams can follow up. 
+
+We’ve advanced on this issue in some areas, but it remains for the places you are working on to complete. Help ensure the documentation is complete.
+
+I have no further points. If anyone has questions, please ask. 
+
+Sorry, if everyone is here, let’s stop recording. 
+
+I think that’s okay.
+
+---
+
+Great, thanks everyone. Personally, a lot has become clear. If anyone has questions, please turn on your microphone and ask. If there are no more points, let’s say goodbye to everyone.
+
+It seems there are no questions. Thank you, and have a good day.
+
+No, no.
+
+---
+
