@@ -4,8 +4,7 @@ from langchain.docstore.document import Document
 from langchain import OpenAI
 import os
 
-# Set your OpenAI API key as an environment variable
-os.environ["OPENAI_API_KEY"] = ""
+
 
 # Initialize the LLM wrapper using OpenAI's GPT
 llm = OpenAI(temperature=0.3)  # Adjust temperature as needed (0.3 for balanced output)
